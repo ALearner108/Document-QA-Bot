@@ -6,7 +6,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Function to extract text from PDF
 def extract_text_from_pdf(file_path):
     text = ""
     with open(file_path, 'rb') as file:
@@ -25,7 +24,7 @@ def upload_file():
         return jsonify({'error': 'No selected file'}), 400
 
     if file and file.mimetype in ['application/pdf', 'text/plain']:
-        if len(file.read()) > 10 * 1024 * 1024:  # Check for file size > 10MB
+        if len(file.read()) > 10 * 1024 * 1024: 
             return jsonify({'error': 'File size exceeds 10MB limit'}), 400
         file.seek(0)
 
